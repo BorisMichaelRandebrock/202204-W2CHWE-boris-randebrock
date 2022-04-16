@@ -5,9 +5,9 @@ describe("Given the addAAndB function", () => {
     test("Then it should return 4", () => {
       const valueA = 2;
       const valueB = 2;
+      const expectedResult = 4;
 
       const result = addAAndB(valueA, valueB);
-      const expectedResult = 4;
 
       expect(result).toBe(expectedResult);
     });

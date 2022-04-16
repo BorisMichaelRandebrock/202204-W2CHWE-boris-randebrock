@@ -1,3 +1,12 @@
-const addAAndB = (a, b) => a + b;
+const cells = [];
 
-addAAndB(2, 2);
+class Cell {
+  alive;
+
+  constructor() {
+    this.alive = false;
+  }
+}
+
+const cell = new Cell(false);
+cells.push(cell);
