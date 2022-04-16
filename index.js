@@ -1,6 +1,6 @@
-const positionedCells = [];
-const width = 3;
-const height = 3;
+const allocatedPosition = [];
+const column = 3;
+const row = 3;
 class Cell {
   alive;
   positionX;
@@ -14,11 +14,13 @@ class Cell {
 }
 
 const allocatedPositions = () => {
-  for (let y = 0; y <= height; y++) {
-    for (let x = 0; x <= width; x++) {
-      positionedCells.push(new Cell(x, y));
+  for (let y = 0; y < row; y++) {
+    allocatedPosition.push([]);
+    for (let x = 0; x < column; x++) {
+      allocatedPosition[y].push(new Cell(x, y));
     }
   }
-  return positionedCells;
+  return allocatedPosition;
 };
-allocatedPositions();
+// allocatedPositions();
+console.table(allocatedPositions());
