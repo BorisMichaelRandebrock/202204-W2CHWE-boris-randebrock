@@ -32,11 +32,11 @@ const grid = positionDisplay();
 const rulesOfLife = () => {
   for (let i = 0; i < row; i++) {
     for (let j = 0; j < column; j++) {
-      if (positionDisplay[i][j].alive < 2 || positionDisplay[i][j] > 3) {
-        positionDisplay[i][j].alive = false;
+      if (grid[i][j].alive < 2 || grid[i][j] > 3) {
+        grid[i][j].alive = false;
       }
-      if (positionDisplay[i][j] === 2 || positionDisplay[i][j] === 3) {
-        positionDisplay[i][j].alive = true;
+      if (grid[i][j] === 2 || grid[i][j] === 3) {
+        grid[i][j].alive = true;
       }
     }
   }
@@ -46,68 +46,69 @@ const checkNeighbours = () => {
   do {
     for (let i = 0; i < row; i++) {
       for (let j = 0; j < column; j++) {
-        positionDisplay[i][j].alive = 0;
-        if (typeof positionDisplay[i - 1] !== "undefined") {
-          if (typeof positionDisplay[i - 1][j - 1] !== "undefined") {
-            if (positionDisplay[i - 1][j - 1].alive === true) {
-              positionDisplay[i][j].alive += 1;
+        grid[i][j].alive = 0;
+
+        if (typeof grid[i - 1] !== "undefined") {
+          if (typeof grid[i - 1][j - 1] !== "undefined") {
+            if (grid[i - 1][j - 1].alive === true) {
+              grid[i][j].alive += 1;
             }
           }
         }
-        if (typeof positionDisplay[i - 1] !== "undefined") {
-          if (typeof positionDisplay[i - 1][j] !== "undefined") {
-            if (positionDisplay[i - 1][j].alive === true) {
-              positionDisplay[i][j].alive += 1;
+        if (typeof grid[i - 1] !== "undefined") {
+          if (typeof grid[i - 1][j] !== "undefined") {
+            if (grid[i - 1][j].alive === true) {
+              grid[i][j].alive += 1;
             }
           }
         }
-        if (typeof positionDisplay[i - 1] !== "undefined") {
-          if (typeof positionDisplay[i - 1][j + 1] !== "undefined") {
-            if (positionDisplay[i - 1][j + 1].alive === true) {
-              positionDisplay[i][j].alive += 1;
+        if (typeof grid[i - 1] !== "undefined") {
+          if (typeof grid[i - 1][j + 1] !== "undefined") {
+            if (grid[i - 1][j + 1].alive === true) {
+              grid[i][j].alive += 1;
             }
           }
         }
-        if (typeof positionDisplay[i] !== "undefined") {
-          if (typeof positionDisplay[i][j - 1] !== "undefined") {
-            if (positionDisplay[i][j - 1].alive === true) {
-              positionDisplay[i][j].alive += 1;
+        if (typeof grid[i] !== "undefined") {
+          if (typeof grid[i][j - 1] !== "undefined") {
+            if (grid[i][j - 1].alive === true) {
+              grid[i][j].alive += 1;
             }
           }
         }
 
-        if (typeof positionDisplay[i] !== "undefined") {
-          if (typeof positionDisplay[i][j + 1] !== "undefined") {
-            if (positionDisplay[i][j + 1].alive === true) {
-              positionDisplay[i][j].alive += 1;
+        if (typeof grid[i] !== "undefined") {
+          if (typeof grid[i][j + 1] !== "undefined") {
+            if (grid[i][j + 1].alive === true) {
+              grid[i][j].alive += 1;
             }
           }
         }
 
-        if (typeof positionDisplay[i + 1] !== "undefined") {
-          if (typeof positionDisplay[i + 1][j - 1] !== "undefined") {
-            if (positionDisplay[i + 1][j - 1].alive === true) {
-              positionDisplay[i][j].alive += 1;
+        if (typeof grid[i + 1] !== "undefined") {
+          if (typeof grid[i + 1][j - 1] !== "undefined") {
+            if (grid[i + 1][j - 1].alive === true) {
+              grid[i][j].alive += 1;
             }
           }
         }
-        if (typeof positionDisplay[i + 1] !== "undefined") {
-          if (typeof positionDisplay[i + 1][j] !== "undefined") {
-            if (positionDisplay[i + 1][j].alive === true) {
-              positionDisplay[i][j].alive += 1;
+        if (typeof grid[i + 1] !== "undefined") {
+          if (typeof grid[i + 1][j] !== "undefined") {
+            if (grid[i + 1][j].alive === true) {
+              grid[i][j].alive += 1;
             }
           }
         }
-        if (typeof positionDisplay[i + 1] !== "undefined") {
-          if (typeof positionDisplay[i + 1][j + 1] !== "undefined") {
-            if (positionDisplay[i + 1][j + 1].alive === true) {
-              positionDisplay[i][j].alive += 1;
+        if (typeof grid[i + 1] !== "undefined") {
+          if (typeof grid[i + 1][j + 1] !== "undefined") {
+            if (grid[i + 1][j + 1].alive === true) {
+              grid[i][j].alive += 1;
             }
           }
         }
       }
     }
-  } while (positionDisplay.alive === false);
+  } while (grid.alive === false);
   rulesOfLife();
 };
 
