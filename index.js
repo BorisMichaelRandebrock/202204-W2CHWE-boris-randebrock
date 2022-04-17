@@ -1,6 +1,6 @@
 const allocatedPosition = [];
-const column = 3;
-const row = 3;
+const column = 30;
+const row = 30;
 class Cell {
   alive;
   positionX;
@@ -29,3 +29,4 @@ const positionDisplay = () => {
   return allocatedPosition;
 };
 positionDisplay();
+// console.table(positionDisplay());
