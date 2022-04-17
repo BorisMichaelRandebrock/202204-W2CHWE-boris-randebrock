@@ -1,6 +1,6 @@
 const allocatedPosition = [];
-const column = 30;
-const row = 30;
+const column = 3;
+const row = 3;
 class Cell {
   alive;
   positionX;
@@ -25,8 +25,64 @@ const positionDisplay = () => {
     }
   }
   firstLife();
-
   return allocatedPosition;
 };
-positionDisplay();
-// console.table(positionDisplay());
+const grid = positionDisplay();
+
+const checkNeighbours = () => {
+  do {
+    for (let i = 0; i < row; i++) {
+      for (let j = 0; j < column; j++) {
+        positionDisplay[i][j].alive = 0;
+
+        if (positionDisplay[i - 1][j - 1].alive === true) {
+          positionDisplay[i][j].alive += 1;
+        }
+        if (positionDisplay[i - 1][j].alive === true) {
+          positionDisplay[i][j].alive += 1;
+        }
+        if (positionDisplay[i - 1][j + 1].alive === true) {
+          positionDisplay[i][j].alive += 1;
+        }
+        if (positionDisplay[i][j - 1].alive === true) {
+          positionDisplay[i][j].alive += 1;
+        }
+        if (positionDisplay[i][j + 1].alive === true) {
+          positionDisplay[i][j].alive += 1;
+        }
+        if (positionDisplay[i + 1][j - 1].alive === true) {
+          positionDisplay[i][j].alive += 1;
+        }
+        if (positionDisplay[i + 1][j].alive === true) {
+          positionDisplay[i][j].alive += 1;
+        }
+        if (positionDisplay[i + 1][j + 1].alive === true) {
+          positionDisplay[i][j].alive += 1;
+        }
+        if (
+          positionDisplay[i][j].alive === false &&
+          positionDisplay[i][j].alive > 2
+        ) {
+          positionDisplay[i][j].alive = true;
+        } else if (
+          positionDisplay[i][j].alive === true &&
+          positionDisplay[i][j].alive === 2
+        ) {
+          positionDisplay[i][j].alive = true;
+        } else if (
+          positionDisplay[i][j].alive === true &&
+          positionDisplay[i][j].alive === 3
+        ) {
+          positionDisplay[i][j].alive = true;
+        } else {
+          positionDisplay[i][j].alive = false;
+        }
+      }
+    }
+  } while (positionDisplay.alive === false);
+  return grid;
+};
+
+checkNeighbours();
+
+// console.log(grid);
