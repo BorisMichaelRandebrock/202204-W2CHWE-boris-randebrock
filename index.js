@@ -1,6 +1,7 @@
 const allocatedPosition = [];
 const column = 3;
 const row = 3;
+let neighbourCounter = 0;
 class Cell {
   alive;
   positionX;
@@ -32,47 +33,46 @@ const grid = positionDisplay();
 const rulesOfLife = () => {
   for (let i = 0; i < row; i++) {
     for (let j = 0; j < column; j++) {
-      if (grid[i][j].alive < 2 || grid[i][j] > 3) {
+      if (neighbourCounter < 2 || neighbourCounter > 3) {
         grid[i][j].alive = false;
       }
-      if (grid[i][j] === 2 || grid[i][j] === 3) {
+      if (neighbourCounter === 2 || neighbourCounter === 3) {
         grid[i][j].alive = true;
       }
     }
   }
+
   return grid;
 };
 const checkNeighbours = () => {
   do {
     for (let i = 0; i < row; i++) {
       for (let j = 0; j < column; j++) {
-        grid[i][j].alive = 0;
-
         if (typeof grid[i - 1] !== "undefined") {
           if (typeof grid[i - 1][j - 1] !== "undefined") {
             if (grid[i - 1][j - 1].alive === true) {
-              grid[i][j].alive += 1;
+              neighbourCounter++;
             }
           }
         }
         if (typeof grid[i - 1] !== "undefined") {
           if (typeof grid[i - 1][j] !== "undefined") {
             if (grid[i - 1][j].alive === true) {
-              grid[i][j].alive += 1;
+              neighbourCounter++;
             }
           }
         }
         if (typeof grid[i - 1] !== "undefined") {
           if (typeof grid[i - 1][j + 1] !== "undefined") {
             if (grid[i - 1][j + 1].alive === true) {
-              grid[i][j].alive += 1;
+              neighbourCounter++;
             }
           }
         }
         if (typeof grid[i] !== "undefined") {
           if (typeof grid[i][j - 1] !== "undefined") {
             if (grid[i][j - 1].alive === true) {
-              grid[i][j].alive += 1;
+              neighbourCounter++;
             }
           }
         }
@@ -80,7 +80,7 @@ const checkNeighbours = () => {
         if (typeof grid[i] !== "undefined") {
           if (typeof grid[i][j + 1] !== "undefined") {
             if (grid[i][j + 1].alive === true) {
-              grid[i][j].alive += 1;
+              neighbourCounter++;
             }
           }
         }
@@ -88,28 +88,28 @@ const checkNeighbours = () => {
         if (typeof grid[i + 1] !== "undefined") {
           if (typeof grid[i + 1][j - 1] !== "undefined") {
             if (grid[i + 1][j - 1].alive === true) {
-              grid[i][j].alive += 1;
+              neighbourCounter++;
             }
           }
         }
         if (typeof grid[i + 1] !== "undefined") {
           if (typeof grid[i + 1][j] !== "undefined") {
             if (grid[i + 1][j].alive === true) {
-              grid[i][j].alive += 1;
+              neighbourCounter++;
             }
           }
         }
         if (typeof grid[i + 1] !== "undefined") {
           if (typeof grid[i + 1][j + 1] !== "undefined") {
             if (grid[i + 1][j + 1].alive === true) {
-              grid[i][j].alive += 1;
+              neighbourCounter++;
             }
           }
         }
       }
     }
   } while (grid.alive === false);
-  rulesOfLife();
+  rulesOfLife(neighbourCounter);
 };
 
 checkNeighbours();
